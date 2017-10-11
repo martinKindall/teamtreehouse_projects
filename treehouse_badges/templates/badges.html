@@ -1,0 +1,148 @@
+<div class="container">
+	<div class="text-xs-center m-a-1">
+		<nav class="navbar navbar-light bg-faded">
+	        <div class="container">
+	          <ul class="nav navbar-nav">
+	            <li class="nav-item">
+	              <a class="nav-link" href="" data-toggle="modal" data-target="#about">Help & About</a>
+	            </li>
+	          </ul>
+	          <a class="navbar-brand pull-xs-right m-r-0" href="" data-toggle="modal" data-target="#contact">
+	          	Contact
+	          </a>
+	        </div>
+	    </nav>
+		<div class="jumbotron jumbotron-fluid bg-secondary">
+		  <div class="container">
+		    <h1 class="display-3 hidden-xs-down">badgesChart</h1>
+		    <h1 class="display-5 hidden-sm-up">badgesChart</h1>
+		    <div class="col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+		    	<p class="lead">Enter your treehouse username!</p>
+			    <input type="text" class="form-control" placeholder="username" ng-model="user.username">
+			    <p class="lead m-y-1">Select a year of study</p>
+
+	        	<select class="form-control"
+	        			ng-model="year"
+	                    id="user_year"
+	                    ng-options="year for year in years">
+	            </select>
+
+			    <button type="button" class="btn btn-success m-y-1 btn-lg" ng-click="getBadges()"
+			    ng-disabled="user.username == null || user.username == '' || year == null">
+			    	Badges graph
+			    </button>
+			    <p class="text-muted" ng-show="busy">(please wait)</p>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="row">
+			
+			<h3 class="display-5">Badges per month</h3>
+			<p class="display-5" ng-show="isError">{{errorMessage}}</p>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<canvas
+					id="bar" 
+
+					class="chart chart-bar"
+					chart-data="data_semester_1" 
+					chart-labels="labels_semester_1"
+					chart-series="series"
+					chart-colours="[ '#006400' ]"
+					chart-legend="true"
+				></canvas>
+			</div>
+			<div class="col-md-6">
+				<canvas 
+					id="bar2" 
+
+					class="chart chart-bar" 
+					chart-data="data_semester_2" 
+					chart-labels="labels_semester_2"
+					chart-series="series"
+					chart-legend="true"
+					chart-colours="[ '#006400' ]"
+				></canvas>		
+			</div>		
+		</div>
+
+		<div class="row">
+			<p class="display-5">Joined to TreeHouse at {{join_date | amDateFormat:'DD MMMM YYYY'}}</p>
+			<p class="display-5">Badges in {{year}}: {{user.badges}}</p>
+			<p class="display-5">Average per month in {{year}}: {{user.average}}</p>
+			<p class="display-5">Total Badges: {{user.badges_total}}</p>
+		</div>
+	</div>
+    <!-- footer -->
+
+    <div class="row p-y-1 m-x-1">      
+		<div class="text-xs-right">
+			<small>2016 badgesChart, by TECNOMACS</small>
+		</div>
+    </div>        
+
+    <!-- /footer -->
+
+	<!--
+          MODAL
+    -->
+    <div class="modal fade" id="about">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Help & About</h4>
+          </div>
+          <div class="modal-body">
+            <!-- body -->
+            <p class="text-justify">
+            This app is intended for the teamtreehouse members, in order to follow badges earnings through the year. Our profiles info is
+            public (thanks teamtreehouse!), that's why this app is non-intrusive and doesn't require your password.
+            If you are a member and don't know your <b>username</b>, you can go to your
+            profile in <a href="https://teamtreehouse.com/">https://teamtreehouse.com</a>.
+            </p>
+            <p class="text-justify">
+            Once you go to your profile, check the name that appears after the domain:
+            <a href="">https://teamtreehouse.com/<b>username</b></a>. Teamtreehouse gives
+            us access to our profile in <b>JSON</b> format info if we write the request like this:
+            <a href="">https://teamtreehouse.com/<b>username.json</b></a>. 
+            </p>
+
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+	<div class="modal fade" id="contact">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Contact</h4>
+          </div>
+          <div class="modal-body">
+            <!-- body -->
+            <p class="text-justify">
+			Please like my facebook site to support this app, you can follow my latest entries in my blog for begginers in the technology world: <a href="http://www.facebook.com/tecnomacs2016">
+            	www.facebook.com/tecnomacs2016
+            </a>, where you can ask me questions about this app or about web stuff.
+            My blog <a href="http://www.tecnomacs.com">
+            	www.tecnomacs.com
+            </a>.
+            My teamtreehouse profile is this <a href="https://www.teamtreehouse.com/martincornejosaavedra">
+            	martincornejosaavedra
+            </a>. 
+            </p>
+
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
